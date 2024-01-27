@@ -40,4 +40,12 @@ module.exports = {
   env: {
     'jest/globals': true,
   },
+  overrides: [
+    {
+      files: ['src/features/**/*.ts'],
+      rules: {
+        'no-param-reassign': 'off',
+      },
+    },
+  ],
 }
