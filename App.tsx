@@ -1,16 +1,25 @@
 import React from 'react'
-import { SafeAreaView } from 'react-native'
+import { ApplicationProvider, Icon, IconRegistry, Layout, Text } from '@ui-kitten/components'
+import { EvaIconsPack } from '@ui-kitten/eva-icons'
 import * as eva from '@eva-design/eva'
-import { ApplicationProvider, Layout, Text } from '@ui-kitten/components'
+import { StyleSheet } from 'react-native'
 
+const styles = StyleSheet.create({
+  icon: {
+    width: 32,
+    height: 32,
+  },
+})
 const App = () => (
-  <ApplicationProvider {...eva} theme={eva.light}>
-    <SafeAreaView style={{ flex: 1 }}>
+  <>
+    <IconRegistry icons={EvaIconsPack} />
+    <ApplicationProvider {...eva} theme={eva.light}>
       <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Welcome to UI Kitten</Text>
+        <Text>Welcome to UI Kitten with Eva Icons!</Text>
+        <Icon style={styles.icon} fill="#8F9BB3" name="star" />
       </Layout>
-    </SafeAreaView>
-  </ApplicationProvider>
+    </ApplicationProvider>
+  </>
 )
 
 export default App
