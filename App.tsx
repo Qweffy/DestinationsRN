@@ -1,21 +1,16 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
-import Button from './src/components/Button'
+import { SafeAreaView } from 'react-native'
+import * as eva from '@eva-design/eva'
+import { ApplicationProvider, Layout, Text } from '@ui-kitten/components'
 
-function App(): JSX.Element {
-  return (
-    <View style={styles.container}>
-      <Button onPress={() => console.log('hola')} label={'hola'} />
-    </View>
-  )
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-})
+const App = () => (
+  <ApplicationProvider {...eva} theme={eva.light}>
+    <SafeAreaView style={{ flex: 1 }}>
+      <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Welcome to UI Kitten</Text>
+      </Layout>
+    </SafeAreaView>
+  </ApplicationProvider>
+)
 
 export default App
