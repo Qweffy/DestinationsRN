@@ -5,6 +5,7 @@ import * as eva from '@eva-design/eva'
 import { StyleSheet } from 'react-native'
 import { Provider } from 'react-redux'
 import { store } from './src/store/store'
+import DestinationsScreen from './src/screens/Home/Home'
 
 const styles = StyleSheet.create({
   icon: {
@@ -18,7 +19,7 @@ const App = () => (
     <ApplicationProvider {...eva} theme={eva.light}>
       <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Text>Welcome to UI Kitten with Eva Icons!</Text>
-        <Icon style={styles.icon} fill="#8F9BB3" name="star" />
+        <DestinationsScreen />
       </Layout>
     </ApplicationProvider>
   </Provider>
