@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   },
 })
 
-const DestinationsScreen = () => {
+export const Favorites = () => {
   const { data, error, isLoading } = useGetDestinationsQuery()
   const dispatch = useDispatch()
   const selectedDestinationId = useSelector((state) => state.destinations.selectedDestinationId)
@@ -34,6 +34,7 @@ const DestinationsScreen = () => {
 
   return (
     <View style={styles.container}>
+      <Text>Favoritos</Text>
       {data?.data.map((destination) => (
         <TouchableOpacity
           key={destination.id}
@@ -49,7 +50,3 @@ const DestinationsScreen = () => {
     </View>
   )
 }
-
-// Estilos para los componentes
-
-export default DestinationsScreen
