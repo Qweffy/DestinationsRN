@@ -1,27 +1,22 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, ScrollView } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { useGetDestinationsQuery } from '../../api/services'
 import { setSelectedDestinationId } from '../../features/destinations'
 import { TopNavigator } from '../../navigation/navigators/TopNavigator'
 import { RootStackParamList } from '../../types'
+import { DestinationCard } from '../../components/Card/Card'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
-  destinationItem: {
-    padding: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#cccccc',
-  },
-  selectedItem: {
-    backgroundColor: '#e0e0e0',
+  scrollView: {
+    width: '100%',
   },
 })
+
 type DestinationsProps = {
   navigation: StackNavigationProp<RootStackParamList, 'Destinations'>
 }
@@ -41,16 +36,17 @@ export const Destinations = ({ navigation }: DestinationsProps) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <TopNavigator title="Destinos" navigation={navigation} />
-      <View style={styles.container}>
-        {data?.data.map((destination) => (
-          <TouchableOpacity
-            key={destination.id}
-            style={[styles.destinationItem, destination.id === selectedDestinationId ? styles.selectedItem : null]}
-            onPress={() => handleSelectDestination(destination.id)}>
-            <Text>{destination.destinationData.translatableName.es}</Text>
-          </TouchableOpacity>
-        ))}
-      </View>
+      <ScrollView style={styles.scrollView}>
+        <View style={styles.container}>
+          {data?.data.map((destination) => (
+            <DestinationCard
+              key={destination.id}
+              destination={destination}
+              onSeeMorePress={() => handleSelectDestination(destination.id)}
+            />
+          ))}
+        </View>
+      </ScrollView>
     </SafeAreaView>
   )
 }
