@@ -6,6 +6,7 @@ import { StyleSheet } from 'react-native'
 import { Provider } from 'react-redux'
 import { store } from './src/store/store'
 import { AppNavigator } from './src/navigation'
+import { LoadingHandler } from './src/screens/LoadingHandler'
 
 const styles = StyleSheet.create({
   container: {
@@ -17,7 +18,9 @@ const App = () => (
     <IconRegistry icons={EvaIconsPack} />
     <ApplicationProvider {...eva} theme={eva.light}>
       <Layout style={styles.container}>
-        <AppNavigator />
+        <LoadingHandler>
+          <AppNavigator />
+        </LoadingHandler>
       </Layout>
     </ApplicationProvider>
   </Provider>
