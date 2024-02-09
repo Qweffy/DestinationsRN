@@ -1,4 +1,4 @@
-import { StyleSheet, ViewStyle, ImageStyle, TextStyle } from 'react-native'
+import { StyleSheet, ViewStyle, ImageStyle } from 'react-native'
 import { largeSpace } from '../../styles/Spacing'
 
 type DestinationDetailStyleType = {
