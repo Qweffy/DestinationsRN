@@ -1,1 +1,1 @@
-export { default as destinationsReducer, setSelectedDestinationId, setFilter } from './destinationsSlice'
+export { default as destinationsReducer } from './destinationsSlice'

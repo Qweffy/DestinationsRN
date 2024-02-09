@@ -1,4 +1,6 @@
 import { schema } from 'normalizr'
 
-export const destinationSchema = new schema.Entity('destinations')
+const destinationSchema = new schema.Entity('destinations', {})
+destinationSchema.define({ childs: [destinationSchema] })
+
 export const destinationListSchema = [destinationSchema]

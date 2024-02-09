@@ -1,5 +1,5 @@
 import React from 'react'
-import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native'
+import { Text, TouchableOpacity, View } from 'react-native'
 
 import { ButtonProps } from './Button.types'
 
@@ -13,7 +13,6 @@ export const Button = ({
   containerStyles = {},
   buttonStyles = {},
   labelStyles = {},
-  isLoading = false,
   onPress,
 }: ButtonProps) => {
   const buttonBackground = { backgroundColor: mainColor }

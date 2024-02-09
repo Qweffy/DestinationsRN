@@ -5,7 +5,7 @@ import { Button } from './Button'
 
 describe('<Button/>', () => {
   test('<Button> renders correctly', () => {
-    render(<Button label={'hola'} onPress={() => console.log('hola')} />)
+    render(<Button label={'Button'} onPress={() => {}} />)
     expect(screen.toJSON()).toMatchSnapshot()
   })
 })

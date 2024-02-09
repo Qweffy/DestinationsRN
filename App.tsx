@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
 const App = () => (
   <Provider store={store}>
     <IconRegistry icons={EvaIconsPack} />
+    {/* eslint-disable-next-line react/jsx-props-no-spreading */}
     <ApplicationProvider {...eva} theme={eva.light}>
       <Layout style={styles.container}>
         <LoadingHandler>
