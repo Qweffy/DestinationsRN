@@ -1,45 +1,34 @@
-# React Native CLI TypeScript Template
+# DestinationsRN
 
-This is a custom [**React Native**](https://reactnative.dev) template created using [`@react-native-community/cli`](https://github.com/react-native-community/cli). It's tailored for quick setup of challenges and projects with TypeScript integration.
+## Introduction
+DestinationsRN is a mobile application developed with React Native and TypeScript, aimed at exploring and discovering tourist destinations. It leverages Redux Toolkit (RTK) and Normalizr for efficient state management and data structuring.
+
+## Features
+
+### Normalizr
+We employ Normalizr to normalize nested API responses, transforming complex data structures into a flat format for easier data manipulation and state management.
+
+### Redux Toolkit and RTK Query
+Redux Toolkit streamlines the setup of the Redux store. RTK Query is used for efficiently performing queries and mutations against our API, automatically managing caching, data invalidation, and logic reuse.
+
+## Architecture
+The app is structured in clear, modular components following React Native development best practices. Business logic is encapsulated within Redux Toolkit slices, ensuring maintainable and scalable code.
 
 ## Getting Started
 
-> **Note**: Ensure you've completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) up to the "Creating a new application" step before proceeding.
-
-### Step 1: Start the Metro Server
-
-Metro, the JavaScript bundler that ships with React Native, needs to be started first:
-
-From the root of your project, run:
+### Installation
+Follow these steps to install and set up the app locally, including cloning the repository and installing dependencies.
 
 ```bash
-yarn start
-```
+git clone <repository-url>
+cd DestinationsRN
+yarn install
+cd ios && pod install && cd ..
 
-### Step 2: Launch Your Application
 
-Keep Metro running in its own terminal. Open a new terminal at the root of your project and run the following command to start your Android or iOS app:
-
-#### For Android
-
-```bash
-yarn android
-```
-
-#### For iOS
-
-```bash
+# For iOS
 yarn ios
-```
+# Or run directly from Xcode by opening the project folder in `ios/`
 
-If set up correctly, your app should soon appear in your Android Emulator or iOS Simulator.
-
-### Step 3: Modify Your App
-
-1. Open `App.tsx` in your text editor of choice and edit as needed.
-2. For **Android**: Press <kbd>R</kbd> twice or select **"Reload"** from the **Developer Menu**.
-   For **iOS**: Press <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
+# For Android
+yarn android
