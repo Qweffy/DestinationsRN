@@ -1,4 +1,11 @@
+import { NormalizedDestination } from './destinationTypes'
+
 export type RootStackParamList = {
-  Home: undefined
-  Destinations: { itemId: number; title: string }
+  Destinations: {
+    destinations: NormalizedDestination[]
+    parentDestinationId: number
+  }
+  DestinationDetail: {
+    childId: number
+  }
 }

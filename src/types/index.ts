@@ -1,4 +1,4 @@
 import { RootStackParamList } from './navigationTypes'
-import { Destination } from './destinationTypes'
+import { NormalizedDestination } from './destinationTypes'
 
-export type { RootStackParamList, Destination }
+export type { RootStackParamList, NormalizedDestination }

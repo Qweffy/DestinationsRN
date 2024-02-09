@@ -1,10 +1,9 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
-
-import { BottomTabNavigator } from './navigators'
+import { DestinationsStackNavigator } from './navigators/DestinationsNavigator'
 
 export const AppNavigator = () => (
   <NavigationContainer>
-    <BottomTabNavigator />
+    <DestinationsStackNavigator />
   </NavigationContainer>
 )

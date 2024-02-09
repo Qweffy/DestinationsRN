@@ -1,3 +1,3 @@
-import { BottomTabNavigator } from './BottomTabNavigator'
+import { TopNavigator } from './TopNavigator'
 
-export { BottomTabNavigator }
+export { TopNavigator }
