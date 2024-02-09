@@ -1,4 +1,4 @@
-export interface Destination {
+export interface NormalizedDestination {
   id: number
   isTop: boolean
   isFinalNode: boolean
@@ -18,7 +18,7 @@ export interface Destination {
     }
     photographs: string[]
   }
-  childs?: Destination[]
+  childs?: number[]
   fatherDestination: number
   status: number
   ts: string
