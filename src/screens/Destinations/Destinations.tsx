@@ -1,27 +1,50 @@
-import React from 'react'
-import { FlatList } from 'react-native'
-import { useSelector } from 'react-redux'
-import { StackNavigationProp } from '@react-navigation/stack'
-import { TopNavigator } from '../../navigation/navigators/TopNavigator'
-import { RootStackParamList } from '../../types'
-import { DestinationCard } from '../../components/DestinationCard'
-import { selectTopLevelDestinations } from '../../features/destinations/destionationsSelectors'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { TopNavigator } from '../../navigation/navigators'
+import {
+  selectDestinationChildren,
+  selectTopLevelDestinations,
+} from '../../features/destinations/destionationsSelectors'
 import ScreenWrapper from '../../components/ScreenWrapper'
-
-type DestinationsProps = {
-  navigation: StackNavigationProp<RootStackParamList, 'Destinations'>
-}
+import { selectDestination } from '../../features/destinations/destinationsSlice'
+import { DestinationsList } from '../../components/DestinationsList'
+import { DestinationsProps } from './Destinations.types'
 
 export const Destinations = ({ navigation }: DestinationsProps) => {
+  const dispatch = useDispatch()
   const topLevelDestinations = useSelector(selectTopLevelDestinations)
+  const destinationChildren = useSelector(selectDestinationChildren)
+  const [isTopLevel, setIsTopLevel] = useState(true)
+
+  const handlePress = (id: number) => {
+    const destination =
+      topLevelDestinations.find((dest) => dest.id === id) || destinationChildren.find((dest) => dest.id === id)
+
+    if (!destination) return
+
+    if (!destination.isFinalNode && (destination.childs?.length === 0 || !destination.childs)) {
+      return
+    }
+
+    dispatch(selectDestination(id))
+
+    if (destination.isFinalNode) {
+      navigation.navigate('DestinationDetail', { childId: id })
+    } else {
+      setIsTopLevel(false)
+    }
+  }
+
+  const handleBackToTopLevel = () => {
+    setIsTopLevel(true)
+  }
 
   return (
     <ScreenWrapper>
-      <TopNavigator title="Destinos" navigation={navigation} />
-      <FlatList
-        data={topLevelDestinations}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => <DestinationCard destination={item} onSeeMorePress={() => {}} />}
+      {!isTopLevel && <TopNavigator navigation={navigation} onBackPress={handleBackToTopLevel} />}
+      <DestinationsList
+        destinations={isTopLevel ? topLevelDestinations : destinationChildren}
+        onDestinationPress={handlePress}
       />
     </ScreenWrapper>
   )
