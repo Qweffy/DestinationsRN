@@ -1,34 +1,35 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { NormalizedSchema } from 'normalizr'
-import { Destination } from '../../types'
+import { NormalizedDestination } from '../../types'
 
 interface DestinationsState {
-  entities: { [id: string]: Destination }
+  entities: { [id: string]: NormalizedDestination }
   topLevelIds: string[]
+  selectedDestinationId: number | null
 }
 
 const initialState: DestinationsState = {
   entities: {},
   topLevelIds: [],
+  selectedDestinationId: null,
 }
 
 const destinationsSlice = createSlice({
   name: 'destinations',
   initialState,
   reducers: {
-    setDestinations(
-      state,
-      action: PayloadAction<NormalizedSchema<{ destinations: { [id: string]: Destination } }, string[]>>,
-    ) {
+    setDestinations(state, action: PayloadAction<any>) {
       const {
         entities: { destinations },
         result,
       } = action.payload
       state.entities = destinations
-      state.topLevelIds = result.filter((id) => state.entities[id]?.fatherDestination === 0)
+      state.topLevelIds = result.filter((id: string) => state.entities[id]?.fatherDestination === 0)
+    },
+    selectDestination(state, action: PayloadAction<number>) {
+      state.selectedDestinationId = action.payload
     },
   },
 })
 
-export const { setDestinations } = destinationsSlice.actions
+export const { setDestinations, selectDestination } = destinationsSlice.actions
 export default destinationsSlice.reducer
