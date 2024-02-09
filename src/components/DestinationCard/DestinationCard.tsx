@@ -1,17 +1,35 @@
 import React from 'react'
-import { Image } from 'react-native'
-import { Card } from '@ui-kitten/components'
+import { useSelector } from 'react-redux'
+import { Card, Text } from '@ui-kitten/components'
+import { View } from 'react-native'
 import styles from './DestinationCard.styles'
 import { DestinationCardProps } from './DestinationCard.types'
-import { Header, Footer } from './DestinationCard.components'
+import { Header } from './DestinationCard.components'
+import { RootState } from '../../store/store'
+import { selectChildDestinationNames } from '../../features/destinations/destionationsSelectors'
 
-const genericDestination = require('../../assets/genericDestination.png')
+export const DestinationCard = ({ destination, onPress }: DestinationCardProps) => {
+  const childDestinationNames = useSelector((state: RootState) =>
+    selectChildDestinationNames(state, destination.childs || []),
+  )
 
-export const DestinationCard = ({ destination, onPress }: DestinationCardProps) => (
-  <Card
-    header={() => <Header destination={destination} />}
-    footer={() => <Footer destination={destination} onPress={onPress} />}
-    style={styles.card}>
-    <Image source={genericDestination} style={styles.image} />
-  </Card>
-)
+  return (
+    <Card
+      onPress={() => onPress(destination.id)}
+      header={() => <Header destination={destination} />}
+      style={styles.card}>
+      <View style={styles.container}>
+        {childDestinationNames.length > 0 ? (
+          <>
+            <Text category="h6">Destinations Within:</Text>
+            {childDestinationNames.map((name) => (
+              <Text key={name}>{name}</Text>
+            ))}
+          </>
+        ) : (
+          <Text>No additional destinations within this location.</Text>
+        )}
+      </View>
+    </Card>
+  )
+}

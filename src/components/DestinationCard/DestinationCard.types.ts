@@ -1,9 +1,9 @@
-import { Destination } from '../../types'
+import { NormalizedDestination } from '../../types'
 
 export type HeaderCardProps = {
-  destination: Destination
+  destination: NormalizedDestination
 }
 
 export type DestinationCardProps = HeaderCardProps & {
-  onPress: () => void
+  onPress: (id: number) => void
 }

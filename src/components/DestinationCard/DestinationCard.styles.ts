@@ -1,6 +1,7 @@
 import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native'
 
 type DestinationCardStyleType = {
+  container: ViewStyle
   card: ViewStyle
   headerContainer: ViewStyle
   headerHighlighted: TextStyle
@@ -11,6 +12,7 @@ type DestinationCardStyleType = {
 }
 
 export default StyleSheet.create<DestinationCardStyleType>({
+  container: { flex: 1 },
   card: {
     margin: 2,
   },
